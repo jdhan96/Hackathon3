@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Predict</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="static/js/script1.js"></script>
+</head>
+<body>
+    <h1>Predict Traffic with Given Data</h1>
+
+    <center>
+        <div class="container">
+            <button onclick="location.href='/'" type="button">
+             Home Page</button>
+        </div>
+    </center>
+
+    <div class="container-fluid" style="min-height:100%;width:80%">
+        {% with messages = get_flashed_messages() %}
+            {% if messages %}
+
+            {% for message in messages %}
+                <div class="alert alert-warning alert-dismissable" role="alert">
+                <button type="button" id="alert" class="close" data-dismiss="alert" aria-label="close"> <span aria-hidden="true">&times;</span></button>
+                 {{ message}}
+                </div>
+            {% endfor %}
+          {% endif %}
+        {% endwith %}
+            {% block body %} {% endblock %}
+
+    </div>
+
+    <div class="container">
+        <form class="form-signin" action="/predictdata" method="post" role="form">
+            <h2 class="form-signin-heading">Please Enter the Data to get the Traffic Prediction </h2>
+            <input type="number" name="roadid" class="form-control" placeholder="Road Id" required autofocus>
+            <input type="number" name="direction" class="form-control" placeholder="Direction" required>
+            <input type="number" name="day" class="form-control" placeholder="Day" required>
+            <input type="number" name="time" class="form-control" placeholder="Time" required>
+            <button class="btn btn-lg btn-primary btn-block" type="submit" >Submit </button>
+        </form>
+    </div>
+
+
+</body>
+</html>
